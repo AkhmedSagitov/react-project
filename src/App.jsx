@@ -1,4 +1,5 @@
 import {useState} from "react";
+import PostItem from "./components/post/PostItem";
 
 function App() {
 
@@ -95,7 +96,7 @@ function App() {
         <div className="bg-gray-50 min-h-screen">
             {isModal &&
                 <div onClick={() => setIsModal(false)} className="modal-shadow">
-                    <div onClick={(e) => e.stopPropagation()} className="mb-4 w-1/2 bg-white border border-gray-200 mx-auto p-4 mb-4">
+                    <div onClick={(e) => e.stopPropagation()} className="mb-4 w-1/2 bg-white border border-gray-200 mx-auto p-4">
                         <div className="mb-4">
                             <input
                                 onChange={(event) => handleEditingPost(event)}
@@ -122,7 +123,7 @@ function App() {
                 </div>
             }
 
-            <div className="mb-4 w-1/2 bg-white border border-gray-200 mx-auto p-4 mb-4">
+            <div className="mb-4 w-1/2 bg-white border border-gray-200 mx-auto p-4">
                 <div className="mb-4">
                     <input
                         onChange={(event) => handlePost(event)}
@@ -155,20 +156,7 @@ function App() {
                     className="inline-block px-3 py-2 text-white bg-sky-600 border border-sky-700 mb-4" href="#">Store</a>
             </div>
             {posts.map( ((p, i) => (
-                <div key={i} className="flex justify-between items-center mb-4 w-1/2 bg-white border border-gray-200 mx-auto p-4">
-                    <div>
-                        <h3 className="text-lg mb-2">{p.title}</h3>
-                        <p className="text-xs">{p.content}</p>
-                    </div>
-                    <div>
-                        <span onClick={() => editPost(p)} className="cursor-pointer text-xs text-emerald-600">
-                            Edit
-                        </span>
-                        <span onClick={() => deletePost(i)} className="cursor-pointer text-xs text-red-600 ml-4">
-                            Delete
-                        </span>
-                    </div>
-                </div>
+                <PostItem key={i} p={p} editPost={editPost} deletePost={deletePost}  index={i}/>
             )))}
         </div>
     )
