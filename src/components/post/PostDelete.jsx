@@ -1,6 +1,10 @@
+import PostContext from "../context/PostContext.js";
+import {useContext} from "react";
 
+function PostDelete({index }) {
 
-function PostDelete({ deletePost, index }) {
+    const {deletePost} = useContext(PostContext)
+
 
     return (
         <>

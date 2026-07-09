@@ -3,6 +3,7 @@ import PostItem from "./components/post/PostItem";
 import PostForm from "./components/post/PostForm";
 import EditingPostModal from "./components/post/EditingPostModal.jsx";
 import Error from "./components/error/Error";
+import PostContext from "./components/context/PostContext.js";
 
 
 function App() {
@@ -106,9 +107,13 @@ function App() {
 
             <Error errors={errors} storePost={storePost}/>
 
-            {posts.map( ((p, i) => (
-                <PostItem key={i} p={p} editPost={editPost} deletePost={deletePost}  index={i}/>
-            )))}
+            <PostContext value={{deletePost}}>
+
+                {posts.map( ((p, i) => (
+                    <PostItem key={i} p={p} editPost={editPost}  index={i}/>
+                )))}
+
+            </PostContext>
         </div>
     )
 }

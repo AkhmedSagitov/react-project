@@ -2,7 +2,7 @@ import PostDelete from "./PostDelete.jsx";
 import PostEdit from "./PostEdit.jsx";
 
 
-function PostItem({ p, index, editPost, deletePost }) {
+function PostItem({ p, index, editPost }) {
 
     return (
         <>
@@ -13,7 +13,7 @@ function PostItem({ p, index, editPost, deletePost }) {
                 </div>
                 <div>
                     <PostEdit editPost={editPost} p={p}/>
-                    <PostDelete deletePost={deletePost} index={index}/>
+                    <PostDelete  index={index}/>
                 </div>
 
             </div>
