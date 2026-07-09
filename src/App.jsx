@@ -1,5 +1,9 @@
 import {useState} from "react";
 import PostItem from "./components/post/PostItem";
+import PostForm from "./components/post/PostForm";
+import EditingPostModal from "./components/post/EditingPostModal.jsx";
+import Error from "./components/error/Error";
+
 
 function App() {
 
@@ -94,67 +98,14 @@ function App() {
 
     return (
         <div className="bg-gray-50 min-h-screen">
+
             {isModal &&
-                <div onClick={() => setIsModal(false)} className="modal-shadow">
-                    <div onClick={(e) => e.stopPropagation()} className="mb-4 w-1/2 bg-white border border-gray-200 mx-auto p-4">
-                        <div className="mb-4">
-                            <input
-                                onChange={(event) => handleEditingPost(event)}
-                                value={editingPost.title}
-                                name="title"
-                                placeholder="title"
-                                type="text"
-                                className="border border-gray-200 p-4 w-full"/>
-                        </div>
-                        <div className="mb-4">
-                        <textarea
-                            onChange={(event) => handleEditingPost(event)}
-                            value={editingPost.content}
-                            name="content"
-                            placeholder="content"
-                            className="border border-gray-200 p-4 w-full"/>
-                        </div>
-                        <div className="w-1/2">
-                            <a
-                                onClick={(event)=> updatePost(event)}
-                                className="inline-block px-3 py-2 text-white bg-sky-600 border border-sky-700 mb-4" href="#">Update</a>
-                        </div>
-                    </div>
-                </div>
+                <EditingPostModal handleEditingPost={handleEditingPost} editingPost={editingPost} updatePost={updatePost} setIsModal={setIsModal} />
             }
+            <PostForm handlePost={handlePost} post={post} />
 
-            <div className="mb-4 w-1/2 bg-white border border-gray-200 mx-auto p-4">
-                <div className="mb-4">
-                    <input
-                        onChange={(event) => handlePost(event)}
-                        value={post.title}
-                        name="title"
-                        placeholder="title"
-                        type="text"
-                        className="border border-gray-200 p-4 w-full"/>
-                </div>
-                <div className="mb-4">
-                    <textarea
-                        onChange={(event) => handlePost(event)}
-                        value={post.content}
-                        name="content"
-                        placeholder="content"
-                        className="border border-gray-200 p-4 w-full"/>
-                </div>
-            </div>
+            <Error errors={errors} storePost={storePost}/>
 
-            <div className="mx-auto w-1/2">
-                {errors.length > 0 && (
-                    <div className="mb-4 text-red-500">
-                        {errors.map((e, i) => (
-                            <div key={i}>{e.message}</div>
-                        ))}
-                    </div>
-                )}
-                <a
-                    onClick={(e)=> storePost(e)}
-                    className="inline-block px-3 py-2 text-white bg-sky-600 border border-sky-700 mb-4" href="#">Store</a>
-            </div>
             {posts.map( ((p, i) => (
                 <PostItem key={i} p={p} editPost={editPost} deletePost={deletePost}  index={i}/>
             )))}
