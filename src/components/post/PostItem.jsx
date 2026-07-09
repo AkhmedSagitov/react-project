@@ -1,3 +1,5 @@
+import PostDelete from "./PostDelete.jsx";
+import PostEdit from "./PostEdit.jsx";
 
 
 function PostItem({ p, index, editPost, deletePost }) {
@@ -10,12 +12,8 @@ function PostItem({ p, index, editPost, deletePost }) {
                     <p className="text-xs">{p.content}</p>
                 </div>
                 <div>
-                        <span onClick={() => editPost(p)} className="cursor-pointer text-xs text-emerald-600">
-                            Edit
-                        </span>
-                    <span onClick={() => deletePost(index)} className="cursor-pointer text-xs text-red-600 ml-4">
-                            Delete
-                    </span>
+                    <PostEdit editPost={editPost} p={p}/>
+                    <PostDelete deletePost={deletePost} index={index}/>
                 </div>
 
             </div>
