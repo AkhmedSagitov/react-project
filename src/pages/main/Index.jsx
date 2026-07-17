@@ -1,16 +1,14 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import PostItem from "../../components/post/PostItem";
 import PostForm from "../../components/post/PostForm";
 import EditingPostModal from "../../components/post/EditingPostModal.jsx";
 import Error from "../../components/error/Error";
 import PostContext from "../../components/context/PostContext.js";
+import axios from "axios";
 
 function Main() {
 
-    const [post, setPost] = useState({
-        title: '',
-        content: '',
-    })
+    const [post, setPost] = useState([])
 
     const [editingPost, setEditingPost] = useState({
         index: null,
@@ -94,8 +92,23 @@ function Main() {
             })
         );
     }
+
+
+    const getPosts = async () => {
+        const response = await axios.get("http://localhost:3000/posts");
+        setPosts(response.data);
+    };
+
+    useEffect(() => {
+        getPosts()
+
+    }, []);
+
+
     return (
         <>
+            {posts.length > 0 && console.log(posts)}
+
             {isModal &&
                 <EditingPostModal handleEditingPost={handleEditingPost} editingPost={editingPost} updatePost={updatePost} setIsModal={setIsModal} />
             }
