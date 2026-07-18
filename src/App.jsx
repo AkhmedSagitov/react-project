@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
 import PostIndex from "./pages/posts/Index.jsx";
 import MainIndex from  "./pages/main/Index.jsx";
+import PostShow from "./components/post/show.jsx";
 
 
 
@@ -21,6 +22,7 @@ function App() {
                     <Routes>
                         <Route path={'/'} element={<MainIndex />}></Route>
                         <Route path={'/posts'} element={<PostIndex />}></Route>
+                        <Route path={'/posts/:id'} element={<PostShow />}></Route>
                     </Routes>
                 </div>
             </Router>
