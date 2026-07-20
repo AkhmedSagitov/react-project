@@ -1,6 +1,31 @@
+import axios from "axios";
+import {useState} from "react";
+
+function PostCreate() {
+
+    const [post, setPost] = useState([])
 
 
-function PostForm({handlePost, post }) {
+    const handlePost = (event) => {
+        const name = event.target.name
+        const value = event.target.value
+        setPost({...post, [name]: value})
+    }
+
+
+    const storePost = async (e)=> {
+
+        e.preventDefault()
+
+        await axios.post(`http://localhost:3000/posts/`, post);
+
+        setPost({
+            title: '',
+            content: '',
+        })
+    }
+
+
 
     return (
         <>
@@ -22,10 +47,12 @@ function PostForm({handlePost, post }) {
                         placeholder="content"
                         className="border border-gray-200 p-4 w-full"/>
                 </div>
+                <a
+                    onClick={(e)=> storePost(e)}
+                    className="inline-block px-3 py-2 text-white bg-sky-600 border border-sky-700 mb-4" href="#">Store</a>
             </div>
-
         </>
     )
 }
 
-export default PostForm
+export default PostCreate

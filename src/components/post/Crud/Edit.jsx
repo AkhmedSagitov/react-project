@@ -1,6 +1,39 @@
+import {useState} from "react";
+import axios from "axios";
 
 
-function EditingPostModal({handleEditingPost, editingPost, updatePost, setIsModal}) {
+function Edit({setIsModal, editingPost}) {
+
+    const [editedPost, setEditedPost] = useState(editingPost);
+    const updatePost = (e) => {
+        e.preventDefault()
+        setIsModal(false)
+
+        storeUpdate()
+
+        setEditedPost({
+            title: '',
+            content: '',
+        })
+
+    }
+
+    const storeUpdate = async () => {
+        await axios.put(
+            `http://localhost:3000/posts/${editedPost.id}`,
+            editedPost
+        );
+    }
+
+    const handleEditedPostContent = (event) => {
+        const { name, value } = event.target;
+
+        setEditedPost({
+            ...editedPost,
+            [name]: value,
+        });
+    };
+
 
     return (
         <>
@@ -8,8 +41,8 @@ function EditingPostModal({handleEditingPost, editingPost, updatePost, setIsModa
                 <div onClick={(e) => e.stopPropagation()} className="mb-4 w-1/2 bg-white border border-gray-200 mx-auto p-4">
                     <div className="mb-4">
                         <input
-                            onChange={(event) => handleEditingPost(event)}
-                            value={editingPost.title}
+                            onChange={(event) => handleEditedPostContent(event)}
+                            value={editedPost.title}
                             name="title"
                             placeholder="title"
                             type="text"
@@ -17,8 +50,8 @@ function EditingPostModal({handleEditingPost, editingPost, updatePost, setIsModa
                     </div>
                     <div className="mb-4">
                         <textarea
-                            onChange={(event) => handleEditingPost(event)}
-                            value={editingPost.content}
+                            onChange={(event) => handleEditedPostContent(event)}
+                            value={editedPost.content}
                             name="content"
                             placeholder="content"
                             className="border border-gray-200 p-4 w-full"/>
@@ -34,4 +67,4 @@ function EditingPostModal({handleEditingPost, editingPost, updatePost, setIsModa
     )
 }
 
-export default EditingPostModal
+export default Edit

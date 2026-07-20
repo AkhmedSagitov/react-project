@@ -1,6 +1,6 @@
 
 
-function Error({ errors, storePost }) {
+function Error({ errors}) {
 
     return (
         <>
@@ -12,9 +12,6 @@ function Error({ errors, storePost }) {
                         ))}
                     </div>
                 )}
-                <a
-                    onClick={(e)=> storePost(e)}
-                    className="inline-block px-3 py-2 text-white bg-sky-600 border border-sky-700 mb-4" href="#">Store</a>
             </div>
         </>
     )
