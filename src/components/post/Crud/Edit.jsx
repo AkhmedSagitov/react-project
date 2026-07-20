@@ -19,7 +19,7 @@ function Edit({setIsModal, editingPost}) {
     }
 
     const storeUpdate = async () => {
-        await axios.put(
+        await axios.patch(
             `http://localhost:3000/posts/${editedPost.id}`,
             editedPost
         );

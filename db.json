@@ -1,39 +1,9 @@
 {
   "posts": [
     {
-      "id": "124c",
-      "title": "dasdsa2222",
-      "content": "as"
-    },
-    {
-      "id": "91dc",
-      "title": "dsadsa22",
-      "content": "2sdsd"
-    },
-    {
-      "id": "8938",
-      "content": "sad",
-      "title": "sadsa"
-    },
-    {
-      "id": "3d47",
-      "title": "asd",
-      "content": "asdsa"
-    },
-    {
-      "id": "1c7d",
-      "content": "asd",
-      "title": "sadas"
-    },
-    {
-      "id": "04d5",
-      "title": "sadsa",
-      "content": "dsa"
-    },
-    {
-      "id": "af68",
-      "content": "asd",
-      "title": "sadsa"
+      "id": "0e25",
+      "content": "test",
+      "title": "test1"
     }
   ]
 }
